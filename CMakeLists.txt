@@ -3,6 +3,10 @@ project(MyProject)
 
 set(CMAKE_CXX_STANDARD 17)
 
+if(MINGW)
+    set(CMAKE_EXE_LINKER_FLAGS "-static-libgcc -static-libstdc++")
+endif()
+
 include(FetchContent)
 
 FetchContent_Declare(
@@ -13,6 +17,6 @@ FetchContent_Declare(
 
 FetchContent_MakeAvailable(json)
 
-add_executable(MyProject src/main.cpp)
+add_executable(DS_PROJECT src/main.cpp)
 
-target_link_libraries(MyProject PRIVATE nlohmann_json::nlohmann_json)
+target_link_libraries(DS_PROJECT PRIVATE nlohmann_json::nlohmann_json)
