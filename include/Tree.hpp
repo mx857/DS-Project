@@ -18,3 +18,32 @@ public:
         height=1;
     }
 };
+
+class Tree
+{
+private:
+    Node* root;
+public:
+    Tree(){
+        root=nullptr;
+    }
+    
+    int getHeight(Node* n){
+        if (n==nullptr) 
+        {
+            return 0;
+        }
+        return n->height;
+    }
+
+    int getBalance(Node* n){
+        if (n==nullptr) 
+        {
+            return 0;
+        }
+        return getHeight(n->left)-getHeight(n->right);
+    }
+    
+
+
+};
