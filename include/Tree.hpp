@@ -89,21 +89,21 @@ public:
         int balance=getBalance(node);
         
         //LL
-        if (balance > 1 && key < node->left->data)
+        if (balance > 1 && value < node->left->data)
             return rightR(node);
 
         //RR
-        if (balance < -1 && key > node->right->data)
+        if (balance < -1 && value > node->right->data)
             return leftR(node);
 
         //LR
-        if (balance > 1 && key > node->left->data) {
+        if (balance > 1 && value > node->left->data) {
             node->left = leftR(node->left);
             return rightR(node);
         }
 
         //RL
-        if (balance < -1 && key < node->right->data) {
+        if (balance < -1 && value < node->right->data) {
             node->right = rightR(node->right);
             return leftR(node);
         }        
