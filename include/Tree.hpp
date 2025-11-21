@@ -68,5 +68,63 @@ public:
         return y;
     }
 
+    Node* insert(Node* node,int value){
+        if (node==nullptr)
+        {
+            return new Node(value);
+        }
+
+        if (value<node->data)
+        {
+            node->left=insert(node->left,value);
+        }
+        else if (value>node->data){
+            node->right=insert(node->right,value);
+        }
+        else{
+            return node;
+        }
+
+        node->height=max(getHeight(node->left),getHeight(node->right));
+        int balance=getBalance(node);
+        
+        //LL
+        if (balance > 1 && key < node->left->data)
+            return rightR(node);
+
+        //RR
+        if (balance < -1 && key > node->right->data)
+            return leftR(node);
+
+        //LR
+        if (balance > 1 && key > node->left->data) {
+            node->left = leftR(node->left);
+            return rightR(node);
+        }
+
+        //RL
+        if (balance < -1 && key < node->right->data) {
+            node->right = rightR(node->right);
+            return leftR(node);
+        }        
+    }
+
+    void insert(int value){
+            root=insert(root,value);
+        }
+
+    void inorder(Node* node) {
+        if (node == nullptr){
+            return;
+        }
+        inorder(node->left);
+        cout << node->data <<" ";
+        inorder(node->right);
+    }
+    
+    void inorder() {
+        inorder(root);
+        cout<<endl;
+    }
     
 };
