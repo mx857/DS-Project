@@ -1,4 +1,6 @@
 #include <iostream>
+#include <fstream>
+#include <string>
 #include <nlohmann/json.hpp>
 using json=nlohmann::json;
 using namespace std;
@@ -22,5 +24,16 @@ public:
 
     Books();
 
+    void save_book(){
+        json book;
+        book[to_string(this->book_id)]={
+            {"Title",this->title},
+            {"Author",this->author},
+            {"Total",this->total_copy},
+            {"Available",this->available_copy}
+        };
+        ofstream file("../database/Books.json");
+        file<<book.dump(4);
+    }
     
 };
