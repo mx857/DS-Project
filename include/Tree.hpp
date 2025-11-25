@@ -1,32 +1,30 @@
-#include <iostream>
-
 using namespace std;
 template <typename T>
-class Node
+class Node 
 {
 public:
     T data;
     Node* left;
     Node* right;
-    
+
     int height;
 
-    Node(int value){
+    Node(const T& value){
         data=value;
         left=right=nullptr;
-        height=1;
+        height=1; 
     }
 };
 
 template <typename T>
-class Tree
+class Tree 
 {
 private:
     Node<T>* root;
 public:
     Tree(){
         root=nullptr;
-    }
+     }
 
     
     int getHeight(Node<T>* n){
@@ -76,7 +74,7 @@ public:
         {
             return new Node<T>(value);
         }
-
+        
         if (value<node->data)
         {
             node->left=insert(node->left,value);
@@ -121,7 +119,7 @@ public:
             return;
         }
         inorder(node->left);
-        cout << node->data <<endl;
+        cout << node->data <<" ";
         inorder(node->right);
     }
     
@@ -129,5 +127,4 @@ public:
         inorder(root);
         cout<<endl;
     }
-    
 };
