@@ -25,15 +25,32 @@ public:
     Books();
 
     void save_book(){
-        json book;
-        book[to_string(this->book_id)]={
+        json books;
+        ifstream input("../database/Books.json");
+        if(input.is_open()){
+            input>>books;
+        }
+        else{
+            books=json::object();
+        }
+
+        int newID=0;
+        for (auto& [key,value]:books.items())
+        {
+            newID=max(newID,stoi(key)+1);
+        }
+        json new_book;
+
+        new_book[(to_string(newID))]={
             {"Title",this->title},
             {"Author",this->author},
             {"Total",this->total_copy},
             {"Available",this->available_copy}
         };
-        ofstream file("../database/Books.json");
-        file<<book.dump(4);
+
+        books[to_string(newID)]=new_book;
+        ofstream output("../database/Books.json");
+        output << books.dump(4);
     }
     
 };
