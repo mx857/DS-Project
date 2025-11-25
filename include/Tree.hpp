@@ -1,10 +1,11 @@
 #include <iostream>
 
 using namespace std;
+template <typename T>
 class Node
 {
 public:
-    int data;
+    T data;
     Node* left;
     Node* right;
     
@@ -17,16 +18,18 @@ public:
     }
 };
 
+template <typename T>
 class Tree
 {
 private:
-    Node* root;
+    Node<T>* root;
 public:
     Tree(){
         root=nullptr;
     }
+
     
-    int getHeight(Node* n){
+    int getHeight(Node<T>* n){
         if (n==nullptr) 
         {
             return 0;
@@ -34,7 +37,7 @@ public:
         return n->height;
     }
 
-    int getBalance(Node* n){
+    int getBalance(Node<T>* n){
         if (n==nullptr) 
         {
             return 0;
@@ -42,9 +45,9 @@ public:
         return getHeight(n->left)-getHeight(n->right);
     }
 
-    Node* rightR(Node* y){
-        Node* x = y->left;
-        Node* T2 = x->right;
+    Node<T>* rightR(Node<T>* y){
+        Node<T>* x = y->left;
+        Node<T>* T2 = x->right;
 
         x->right = y;
         y->left = T2;
@@ -55,9 +58,9 @@ public:
         return x;
     }
 
-    Node* leftR(Node* x) {
-        Node* y = x->right;
-        Node* T2 = y->left;
+    Node<T>* leftR(Node<T>* x) {
+        Node<T>* y = x->right;
+        Node<T>* T2 = y->left;
 
         y->left = x;
         x->right = T2;
@@ -68,10 +71,10 @@ public:
         return y;
     }
 
-    Node* insert(Node* node,int value){
+    Node<T>* insert(Node<T>* node,const T& value){
         if (node==nullptr)
         {
-            return new Node(value);
+            return new Node<T>(value);
         }
 
         if (value<node->data)
@@ -109,16 +112,16 @@ public:
         }        
     }
 
-    void insert(int value){
+    void insert(const T& value){
             root=insert(root,value);
         }
 
-    void inorder(Node* node) {
+    void inorder(Node<T>* node) {
         if (node == nullptr){
             return;
         }
         inorder(node->left);
-        cout << node->data <<" ";
+        cout << node->data <<endl;
         inorder(node->right);
     }
     

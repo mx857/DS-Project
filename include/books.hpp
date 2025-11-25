@@ -24,6 +24,10 @@ public:
 
     Books();
 
+    bool operator<(const Books& b) const{
+        return this->book_id <b.book_id;
+    }
+
     void save_book(){
         json books;
         ifstream input("../database/Books.json");
@@ -51,6 +55,16 @@ public:
         books[to_string(newID)]=new_book;
         ofstream output("../database/Books.json");
         output << books.dump(4);
+    }
+
+    friend ostream& operator<<(ostream& os, const Books& b) {
+        os << "[ID: " << b.book_id
+           << ", Title: " << b.title
+           << ", Author: " << b.author
+           << ", Total: " << b.total_copy
+           << ", Available: " << b.available_copy
+           << " ]";
+        return os;
     }
     
 };
