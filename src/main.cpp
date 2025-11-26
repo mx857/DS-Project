@@ -7,13 +7,8 @@ using json = nlohmann::json;
 
 int main()
 {
-    Tree<Books> tree;
-    tree.insert(Books(21,"asd","asfdg",21,234));
-    tree.insert(Books(32,"asd","asfdg",21,234));
-    tree.insert(Books(14,"asd","asfdg",21,234));
-    tree.insert(Books(23,"asd","asfdg",21,234));
-    tree.insert(Books(52,"asd","asfdg",21,234));
-
-    tree.inorder();
+    Books b1=Books();
+    Tree<Books> tr1=b1.load_book();
+    tr1.inorder();
 }
 

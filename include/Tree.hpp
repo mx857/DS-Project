@@ -1,20 +1,8 @@
+#ifndef TREE_HPP
+#define TREE_HPP
+
+#include "Tree_node.hpp"
 using namespace std;
-template <typename T>
-class Node 
-{
-public:
-    T data;
-    Node* left;
-    Node* right;
-
-    int height;
-
-    Node(const T& value){
-        data=value;
-        left=right=nullptr;
-        height=1; 
-    }
-};
 
 template <typename T>
 class Tree 
@@ -86,7 +74,7 @@ public:
             return node;
         }
 
-        node->height=max(getHeight(node->left),getHeight(node->right));
+        node->height=max(getHeight(node->left)+1,getHeight(node->right));
         int balance=getBalance(node);
         
         //LL
@@ -108,6 +96,8 @@ public:
             node->right = rightR(node->right);
             return leftR(node);
         }        
+
+        return node;
     }
 
     void insert(const T& value){
@@ -128,3 +118,5 @@ public:
         cout<<endl;
     }
 };
+
+#endif

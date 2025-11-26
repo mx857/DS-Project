@@ -1,6 +1,10 @@
+#ifndef BOOKS_HPP
+#define BOOKS_HPP
+
 #include <iostream>
 #include <fstream>
 #include <string>
+#include "Tree.hpp"
 #include <nlohmann/json.hpp>
 using json=nlohmann::json;
 using namespace std;
@@ -25,7 +29,7 @@ public:
     Books();
 
     bool operator<(const Books& b) const{
-        return this->book_id <b.book_id;
+        return this->book_id < b.book_id;
     }
 
     void save_book(){
@@ -57,6 +61,27 @@ public:
         output << books.dump(4);
     }
 
+    Tree<Books> load_book(){
+        Tree<Books> loaded_tree;
+        json book;
+        ifstream file("../database/Books.json");
+        if (!file.is_open()){
+            return loaded_tree;
+        }
+        file>>book;
+        for(auto& [key,value]:book.items()){
+            Books b;
+            b.book_id=stoi(key);
+            b.author=value["Author"];
+            b.available_copy=value["Available"];
+            b.title=value["Title"];
+            b.total_copy=value["Total"];
+
+            loaded_tree.insert(b);
+        }
+        return loaded_tree;
+    }
+
     friend ostream& operator<<(ostream& os, const Books& b) {
         os << "[ID: " << b.book_id
            << ", Title: " << b.title
@@ -68,3 +93,5 @@ public:
     }
     
 };
+
+#endif

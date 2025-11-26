@@ -1,3 +1,6 @@
+#ifndef QUEUE_HPP
+#define QUEUE_HPP
+
 #include <iostream>
 #include "Node.hpp"
 using namespace std;
@@ -38,3 +41,5 @@ public:
         
     }
 };
+
+#endif

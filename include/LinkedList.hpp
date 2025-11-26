@@ -1,3 +1,6 @@
+#ifndef LINKEDLIST_HPP
+#define LINKEDLIST_HPP
+
 #include <iostream>
 #include "Node.hpp"
 using namespace std;
@@ -167,3 +170,5 @@ public:
         head=previous;
     }
 };
+
+#endif

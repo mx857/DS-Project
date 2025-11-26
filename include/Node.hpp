@@ -1,3 +1,6 @@
+#ifndef NODE_HPP
+#define NODE_HPP
+
 class Node
 {
 public:
@@ -8,3 +11,5 @@ public:
         this->next=nullptr;
     }
 };
+
+#endif

@@ -1,3 +1,6 @@
+#ifndef STACK_HPP
+#define STACK_HPP
+
 #include <iostream>
 #include "Node.hpp"
 
@@ -60,3 +63,5 @@ public:
         cout<<endl;   
     }
 };
+
+#endif
