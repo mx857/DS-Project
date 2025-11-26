@@ -67,7 +67,7 @@ public:
         {
             node->left=insert(node->left,value);
         }
-        else if (value>node->data){
+        else if (node->data<value){
             node->right=insert(node->right,value);
         }
         else{
@@ -82,11 +82,11 @@ public:
             return rightR(node);
 
         //RR
-        if (balance < -1 && value > node->right->data)
+        if (balance < -1 && node->right->data < value)
             return leftR(node);
 
         //LR
-        if (balance > 1 && value > node->left->data) {
+        if (balance > 1 && node->left->data < value) {
             node->left = leftR(node->left);
             return rightR(node);
         }

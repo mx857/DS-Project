@@ -18,15 +18,14 @@ private:
     int total_copy;
     int available_copy;
 public:
-    Books(int book_id,string title,string author,int total_copy,int available_copy){
-        this->book_id=book_id;
+    Books(string title,string author,int total_copy,int available_copy){
         this->title=title;
         this->author=author;
         this->total_copy=total_copy;
         this->available_copy=available_copy;
     };
 
-    Books();
+    Books() : title(""), author(""), total_copy(0), available_copy(0) {};
 
     bool operator<(const Books& b) const{
         return this->book_id < b.book_id;
